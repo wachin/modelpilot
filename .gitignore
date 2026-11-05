@@ -1,4 +1,139 @@
 
+# ---------------------------------------------------------------------------
+# ModelPilot .gitignore
+# Secrets and local state must NEVER be committed. See SECURITY.md §2.8.
+# ---------------------------------------------------------------------------
 
-# personal
+# --- ModelPilot local data (contains encrypted credentials + request history) ---
+# Root-anchored on purpose: these names would otherwise shadow legitimate package
+# directories such as src/modelpilot/data/ (the catalog seed).
+/.modelpilot/
+/var/
+/data/
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# --- Secret / key material ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+keyfile
+.secret-key
+.encryption-key
+.encryption-key.tmp-*
+credentials.json
+secrets.json
+
+# --- Backups ---
+*.bak
+*.backup
+backups/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-wheel-metadata/
+.venv/
+venv/
+ENV/
+env/
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Test / coverage / type-check caches ---
+.pytest_cache/
+.tox/
+.nox/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.pytype/
+.pyre/
+pyrightconfig.json
+junit*.xml
+report.xml
+
+# --- Packaging / build artefacts ---
+*.whl
+*.tar.gz
+*.zip
+*.spec
+*.onefile
+
+# --- Editor / IDE ---
+.idea/
+.vscode/
+!.vscode/extensions.json
+*.swp
+*.swo
+*.swn
+*~
+\#*\#
+.\#*
+.kate-swp
+*.kate-swp
+
+# --- OS noise ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Local overrides ---
+TODO.local.md
+scratch/
+*.local
+CLAUDE.local.md
+
+# --- Reference project checkout (architecture audit only; never part of the build) ---
+# Kept local so the audit is reproducible without vendoring another project's code.
 external/
+
+# --- Agent scratch files (not project artefacts) ---
+last-agent.md
+.last-agent.md.kate-swp
